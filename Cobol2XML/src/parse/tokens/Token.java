@@ -50,6 +50,12 @@ public class Token {
 		new TokenType("word");
 
 	/**
+	 * A constant indicating a token is a sentence
+	 */
+	public static final TokenType TT_SENTENCE =
+			new TokenType("sentence");
+
+	/**
 	 * A constant indicating that a token is a symbol 
 	 * like "<=".
 	 */
@@ -194,12 +200,20 @@ public boolean isSymbol() {
 	return ttype == TT_SYMBOL;
 }
 /**
- * Returns true if this token is a word.
+ * Returns true if this token is a sentence.
  *
- * @return   true, if this token is a word.
+ * @return   true, if this token is a sentence.
  */
 public boolean isWord() {
 	return ttype == TT_WORD;
+}
+/**
+ * Returns true if this token is a sentence.
+ *
+ * @return   true, if this token is a sentence.
+ */
+public boolean isSentence() {
+	return ttype == TT_SENTENCE;
 }
 /**
  * Returns the numeric value of this token.

@@ -100,6 +100,7 @@ public class Cobol2XML {
 						xmlp.addElements(c);
 				}// while
 			} catch (Exception e) {
+				System.out.println(e.getMessage());
 				e.printStackTrace(); // BufferedReader
 			} finally {
 				if (r != null) {

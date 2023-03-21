@@ -20,10 +20,7 @@
  */
 package cobol;
 
-import parse.Alternation;
-import parse.Empty;
-import parse.Parser;
-import parse.Sequence;
+import parse.*;
 import parse.tokens.CaselessLiteral;
 import parse.tokens.Num;
 import parse.tokens.Symbol;
@@ -46,16 +43,29 @@ public class CobolParser {
 		Symbol fullstop = new Symbol('.');
 		fullstop.discard();
 		
-		a.add( ProgramID() );
-		
 		a.add( DivisionName() );
 		
 		a.add( SectionName() );
+
+		a.add( CommentLine() );
+
+		a.add( ProgramID() );
 		
 		a.add( DateWritten() );
 		
 		a.add(new Empty());
 		return a;
+	}
+
+	protected Parser CommentLine()
+	{
+		Sequence s = new Sequence();
+		Repetition comment = new Repetition(new Word());
+		Assembler a = new CommentLineAssembler();
+
+		s.add(new Symbol('*').discard());
+		s.add(comment.setAssembler(a));
+		return s;
 	}
 	
 	/*
@@ -67,7 +77,6 @@ public class CobolParser {
 	protected Parser ProgramID() {
 		Sequence s = new Sequence();
 		s.add(new CaselessLiteral("program-id") );
-		s.add(new Symbol('.').discard());	
 		s.add(new Word().setAssembler(new Program_idAssembler()));
 		return s;
 	}

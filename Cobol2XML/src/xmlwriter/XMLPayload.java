@@ -91,6 +91,15 @@ public class XMLPayload {
 		} else {
 			// Division Name null
 		}
+
+		/*
+		 * add CommentLine element
+		 */
+		String commentLineStr = c.getCommentLine();
+		if(commentLineStr != null)
+		{
+			this.addCommentLineElement( commentLineStr );
+		}
 		
 		/*
 		 *  add ProgramID element
