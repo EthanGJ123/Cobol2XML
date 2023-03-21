@@ -90,7 +90,7 @@ public abstract class Assembly implements Enumeration<Object>, PubliclyCloneable
 	 * convenient supplement as a place to work, in addition to 
 	 * the assembly's stack. For example, a parser for an 
 	 * HTML file might use a web page object as its "target". As 
-	 * the parser recognizes markup commands like <head>, it 
+	 * the parser recognizes markup commands like &lt;head>, it
 	 * could apply its findings to the target.
 	 * 
 	 * @return   the target of this assembly
